@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>utilizando json</title>
+</head>
+<body>
+    
+    <div id="usuarios"></div>
+
+    <script>
+        let usuariosDiv = document.querySelector('#usuarios');  // Renamed for clarity
+        fetch('dados.json').then((response) => {
+            response.json().then((dados) => {
+                dados.usuarios.map((usuario) => {  // Fixed variable name to 'usuario'
+                    usuariosDiv.innerHTML += `<li>
+                        ${usuario.nome} - ${usuario.idade} anos</li>`;
+                });
+            });
+        }).catch(error => {
+            console.error('Erro ao carregar os dados:', error);
+        });
+    </script>
+
+</body>
+</html>
